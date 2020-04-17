@@ -585,6 +585,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Pin.Acts.Pin,
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Acts.RotateClockwise,
+		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Arr.Cnds.CompareX,
 		C3.Plugins.System.Cnds.Repeat,
 		C3.Plugins.System.Acts.Wait,
@@ -607,7 +608,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Arr.Exps.Width,
-		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.System.Cnds.ForEach,
 		C3.Plugins.Arr.Cnds.ArrForEach,
@@ -801,7 +801,6 @@ self.C3_JsPropNameTable = [
 		() => "moving",
 		() => 238,
 		() => 688,
-		() => "Uncheck",
 		() => 2.5,
 		p => {
 			const n0 = p._GetNode(0);
@@ -814,6 +813,7 @@ self.C3_JsPropNameTable = [
 		},
 		() => "",
 		() => -5,
+		() => "Uncheck",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 90);
