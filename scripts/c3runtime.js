@@ -595,6 +595,9 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Acts.RotateClockwise,
 		C3.Plugins.Sprite.Acts.Destroy,
+		C3.Plugins.System.Cnds.CompareBoolVar,
+		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Arr.Cnds.CompareX,
 		C3.Plugins.System.Cnds.Repeat,
 		C3.Plugins.System.Acts.Wait,
@@ -603,14 +606,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.MoveForward,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.Plugins.Sprite.Cnds.IsAnimPlaying,
-		C3.Plugins.Sprite.Acts.SetAnim,
 		C3.Plugins.Arr.Acts.Push,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.Sprite.Cnds.OnAnimFinished,
 		C3.Plugins.System.Acts.SetVar,
-		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Touch.Cnds.IsTouchingObject,
 		C3.Behaviors.DragnDrop.Acts.Drop,
 		C3.Plugins.System.Cnds.IsGroupActive,
@@ -623,6 +624,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Acts.Delete,
 		C3.Plugins.Arr.Exps.CurValue,
 		C3.Plugins.Audio.Acts.Play,
+		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Sprite.Exps.AnimationName,
@@ -633,10 +635,11 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Touch.Cnds.OnDoubleTapGestureObject,
 		C3.Behaviors.DragnDrop.Cnds.OnDragStart,
 		C3.Plugins.Sprite.Cnds.PickTopBottom,
-		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Acts.NextPrevLayout,
-		C3.Plugins.Sprite.Cnds.IsOverlapping
+		C3.Plugins.Sprite.Cnds.IsOverlapping,
+		C3.Plugins.Touch.Cnds.OnTouchEnd,
+		C3.Plugins.System.Acts.GoToLayout
 	];
 };
 self.C3_JsPropNameTable = [
@@ -674,9 +677,11 @@ self.C3_JsPropNameTable = [
 	{doItAgainButton: 0},
 	{goOnButton: 0},
 	{Rock: 0},
+	{background: 0},
 	{timer: 0},
 	{segments: 0},
-	{numButtonPresses: 0}
+	{numButtonPresses: 0},
+	{soundOn: 0}
 ];
 
 "use strict";
@@ -779,6 +784,8 @@ self.C3_JsPropNameTable = [
 		() => 505,
 		() => 585,
 		() => 180,
+		() => "Check",
+		() => "Uncheck",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => v0.GetValue();
@@ -820,7 +827,6 @@ self.C3_JsPropNameTable = [
 			return () => (180 + (v0.GetValue() * 40));
 		},
 		() => 692,
-		() => "Check",
 		() => "moving",
 		() => 238,
 		() => 688,
@@ -836,7 +842,6 @@ self.C3_JsPropNameTable = [
 		},
 		() => "",
 		() => -5,
-		() => "Uncheck",
 		() => "obstacles",
 		p => {
 			const n0 = p._GetNode(0);
